@@ -3,7 +3,8 @@
 // license that can be found in the LICENSE file.
 
 // Package jsteg implements JPEG steganography.
-package jsteg
+//package jsteg
+package main
 
 import (
 	"image"

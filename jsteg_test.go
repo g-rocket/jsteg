@@ -1,4 +1,5 @@
-package jsteg
+//package jsteg
+package main
 
 import (
 	"bytes"
