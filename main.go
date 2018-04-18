@@ -21,26 +21,26 @@ func writeData(c_filename *C.char, c_data unsafe.Pointer, c_length C.int) C.int 
 
 	f, err := os.Open(filename)
 	if err != nil {
-	    log.Fatal(err)
+	    log.Print(err)
 		return C.int(-1)
 	}
 
 	img, err := jpeg.Decode(f)
 	if err != nil {
-	    log.Fatal(err)
+	    log.Print(err)
 		return C.int(-1)
 	}
 
 	f2, err := os.Create(filename + "~")
 	if err != nil {
-	    log.Fatal(err)
+	    log.Print(err)
 		return C.int(-1)
 	}
 
 	// hide data in img
 	err = Hide(f2, img, data, nil)
 	if err != nil {
-	    log.Fatal(err)
+	    log.Print(err)
 		return C.int(-1)
 	}
 
@@ -49,7 +49,7 @@ func writeData(c_filename *C.char, c_data unsafe.Pointer, c_length C.int) C.int 
 
     err = os.Rename(filename + "~", filename)
 	if err != nil {
-	    log.Fatal(err)
+	    log.Print(err)
 		return C.int(-1)
 	}
 
@@ -62,7 +62,7 @@ func readData(c_filename *C.char, c_data unsafe.Pointer, c_length C.size_t) C.in
 
 	f, err := os.Open(filename)
 	if err != nil {
-	    log.Fatal(err)
+	    log.Print(err)
 		return C.int(-1)
 	}
 	defer f.Close()
@@ -70,7 +70,7 @@ func readData(c_filename *C.char, c_data unsafe.Pointer, c_length C.size_t) C.in
 	// reveal data
 	revealed, err := Reveal(f)
 	if err != nil {
-	    log.Fatal(err)
+	    log.Print(err)
 		return C.int(-1)
 	}
 
